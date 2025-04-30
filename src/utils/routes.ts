@@ -1,0 +1,4 @@
+export const Route: RouteProps = {
+  HOME: 'HomeScreen',
+  ONBOARD: 'OnboardScreen',
+};
