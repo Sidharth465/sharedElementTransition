@@ -4,24 +4,24 @@ import {SharedElement} from 'react-navigation-shared-element';
 import CoachGif from '@assets/gif.gif';
 import {useAuth} from '@context/AuthProvider';
 
-const HomeScreen = () => {
-  const {logout} = useAuth();
-  const handleLogout = () => {
-    logout();
+const LoginScreen = () => {
+  const {login} = useAuth();
+  const handleContinue = () => {
+    login();
   };
   return (
     <View style={styles.container}>
-      <Pressable onPress={handleLogout}>
+      <Pressable onPress={handleContinue}>
         <SharedElement id="image1">
           <Image style={styles.image} source={CoachGif} />
         </SharedElement>
       </Pressable>
-      <Text style={styles.label}>HomeScreen</Text>
+      <Text style={styles.label}>Login Screen</Text>
     </View>
   );
 };
 
-export default HomeScreen;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {

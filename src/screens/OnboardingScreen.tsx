@@ -1,11 +1,23 @@
 import CoachGif from '@assets/gif.gif';
 import RNText from '@components/RNText';
+import {saveToStorage} from '@utils/local-storage';
 import {Route} from '@utils/routes';
 import React from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
 
-const OnboardingScreen = ({navigation}) => {
+const OnboardingScreen = ({
+  navigation,
+  setIsAppFirstLaunch,
+}: {
+  navigation: any;
+  setIsAppFirstLaunch: (value: boolean) => void;
+}) => {
+  const handleContinue = async () => {
+    navigation.navigate(Route.LOGIN);
+    setIsAppFirstLaunch(false);
+    saveToStorage({key: 'isAppFirstLaunch', value: 'false'});
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.label}>OnboardingScreen</Text>
@@ -14,12 +26,8 @@ const OnboardingScreen = ({navigation}) => {
         voluptatum, quod, quia, quibusdam
       </RNText>
 
-      <Pressable
-        // style={{ borderWidth: 1 }}
-        onPress={() => {
-          navigation.navigate(Route.HOME, {sharedId: 'gif'});
-        }}>
-        <SharedElement id={'image1'}>
+      <Pressable onPress={handleContinue}>
+        <SharedElement id="image1">
           <Image source={CoachGif} resizeMode="contain" style={styles.image} />
         </SharedElement>
       </Pressable>

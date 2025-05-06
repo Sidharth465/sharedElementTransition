@@ -10,6 +10,7 @@
       "@assets/*": ["assets/*"],
       "@navigations/*": ["navigations/*"],
       "@components/*": ["components/*"],
+      "@context/*": ["context/*"],
       "@screens/*": ["screens/*"],
       "@utils/*": ["utils/*"]
     }
