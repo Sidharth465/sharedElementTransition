@@ -5,11 +5,12 @@ import {
   NavigationContainerRef,
   StackActions,
 } from '@react-navigation/native';
-import AuthProvider, {useAuth} from '@context/AuthProvider';
+
 import SplashScreen from '@screens/SplashScreen';
 import AppNavigation from '@navigations/AppNavigation';
 import AuthNavigation from '@navigations/AuthNavigation';
 import {getFromStorage} from '@utils/local-storage';
+import AuthProvider, {useAuth} from '@context/AuthProvider';
 const navigationRef = React.createRef<NavigationContainerRef<any>>();
 
 export function navigate(name: any, params?: object) {
