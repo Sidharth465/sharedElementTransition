@@ -16,38 +16,7 @@ namespace "com.sharedelementtransition"
 flavorDimensions "default"
 
 productFlavors {
-    dev {
-        dimension "default"
-        applicationIdSuffix ".dev"
-        versionNameSuffix "-dev"
-        resValue "string", "app_name", "MyApp Dev"
-    }
-    sid {
-        dimension "default"
-        applicationIdSuffix ".sid"
-        versionNameSuffix "-sid"
-        resValue "string", "app_name", "MyApp SID"
-    }
-    prod {
-        dimension "default"
-        resValue "string", "app_name", "MyApp"
-    }
-}# My Android App
-
-## Overview
-This is an Android application with multiple build flavors to support different environments: development (`dev`), staging (`sid`), and production (`prod`). Each flavor has a unique `applicationId`, version name suffix, and app name.
-
-## Build Flavors
-
-The app uses Gradle product flavors to generate different versions of the app. The configuration is defined in `app/build.gradle`.
-
-### Flavor Configuration
-```gradle
-namespace "com.sharedelementtransition"
-
- flavorDimensions "default"
-    productFlavors {
-        dev {
+     dev {
             dimension "default"
             applicationIdSuffix ".dev"
             versionNameSuffix '-dev'
@@ -65,8 +34,9 @@ namespace "com.sharedelementtransition"
             dimension "default"
             resValue "string", "build_config_package", "@string/app_name"
         }
-    }
-````
+}# My Android App
+
+
 
 ### Tips for Your `README.md`
 
@@ -81,3 +51,4 @@ namespace "com.sharedelementtransition"
   | sid    | com.sharedelementtransition.mistal | -mistal             | MyApp SID |
   | prod   | com.sharedelementtransition        |                     | MyApp     |
   ```
+````
