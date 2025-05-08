@@ -1,5 +1,7 @@
 export const Route: RouteProps = {
-  HOME: 'HomeScreen',
-  ONBOARD: 'OnboardScreen',
-  LOGIN: 'LoginScreen',
+  MAIN: 'Main',
+  HOME: 'Home',
+  ONBOARD: 'Onboard',
+  LOGIN: 'Login',
+  CART: 'Cart',
 };

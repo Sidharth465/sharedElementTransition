@@ -16,7 +16,7 @@ const HomeScreen = () => {
           <Image style={styles.image} source={CoachGif} />
         </SharedElement>
       </Pressable>
-      <Text style={styles.label}>HomeScreen</Text>
+      <Text style={styles.label}>Home Screen</Text>
     </View>
   );
 };

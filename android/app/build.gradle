@@ -77,27 +77,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
     namespace "com.sharedelementtransition"
-    flavorDimensions "default"
-    productFlavors { 
-        dev {
-            dimension "default"
-            applicationIdSuffix ".dev"
-            versionNameSuffix '-dev'
-            resValue "string", "build_config_package", "@string/app_name"
-        }
-        mistral {
-            dimension "default"
-            applicationIdSuffix ".mistral"
-            versionNameSuffix '-mistral'
-            resValue "string", "build_config_package", "@string/app_name"
-        }
-     
-        
-        prod {
-            dimension "default"
-            resValue "string", "build_config_package", "@string/app_name"
-        }
-    }
+    
     defaultConfig {
         applicationId "com.sharedelementtransition"
         minSdkVersion rootProject.ext.minSdkVersion

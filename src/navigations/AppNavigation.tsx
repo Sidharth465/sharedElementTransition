@@ -4,6 +4,7 @@ import React from 'react';
 import {Easing} from 'react-native-reanimated';
 import {enableScreens} from 'react-native-screens';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
+import BottomTabNavigator from './BottomTabNavigation';
 
 enableScreens();
 
@@ -12,14 +13,14 @@ const Stack = createSharedElementStackNavigator();
 const AppNavigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName={Route.HOME}
+      initialRouteName={Route.MAIN}
       screenOptions={{
         headerShown: false,
         gestureEnabled: false,
       }}>
       <Stack.Screen
-        name={Route.HOME}
-        component={HomeScreen}
+        name={Route.MAIN}
+        component={BottomTabNavigator}
         options={{
           cardStyleInterpolator: ({current}: {current: any}) => ({
             cardStyle: {
