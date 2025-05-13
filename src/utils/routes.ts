@@ -4,4 +4,5 @@ export const Route: RouteProps = {
   ONBOARD: 'Onboard',
   LOGIN: 'Login',
   CART: 'Cart',
+  FAVORITE: 'Favorite',
 };

@@ -1,4 +1,3 @@
-import HomeScreen from '@screens/HomeScreen';
 import {Route} from '@utils/routes';
 import React from 'react';
 import {Easing} from 'react-native-reanimated';

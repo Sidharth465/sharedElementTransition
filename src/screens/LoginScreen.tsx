@@ -1,22 +1,32 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
-import {SharedElement} from 'react-navigation-shared-element';
 import CoachGif from '@assets/gif.gif';
 import {useAuth} from '@context/AuthProvider';
+import LottieView from 'lottie-react-native';
+import React, {useState} from 'react';
+import {Button, Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import Animated from 'react-native-reanimated';
+import {SharedElement} from 'react-navigation-shared-element';
 
 const LoginScreen = () => {
   const {login} = useAuth();
+
   const handleContinue = () => {
     login();
   };
+
   return (
     <View style={styles.container}>
       <Pressable onPress={handleContinue}>
-        <SharedElement id="image1">
-          <Image style={styles.image} source={CoachGif} />
-        </SharedElement>
+        <Animated.Image
+          sharedTransitionTag={`sharedTag1`}
+          style={styles.image}
+          source={CoachGif}
+        />
       </Pressable>
+
       <Text style={styles.label}>Login Screen</Text>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Button title="Login" onPress={login} />
+      </View>
     </View>
   );
 };
@@ -36,8 +46,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
+    borderRadius: 8,
+  },
+  imagePlaceholder: {
+    width: 100,
+    height: 100,
     borderRadius: 8,
   },
 });

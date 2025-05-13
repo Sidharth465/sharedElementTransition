@@ -4,4 +4,5 @@ declare interface RouteProps {
   LOGIN: string;
   MAIN: string;
   CART: string;
+  FAVORITE: string;
 }
