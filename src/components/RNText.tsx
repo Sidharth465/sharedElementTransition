@@ -48,8 +48,8 @@ const fontSizeMap = {
 
 type FontSizeKey = keyof typeof fontSizeMap;
 
-interface RNTextProps extends TextProps {
-  children: React.ReactNode;
+interface RNTextProps {
+  title: string;
   weight?: Weight;
   italic?: boolean;
   color?: string;
@@ -58,13 +58,12 @@ interface RNTextProps extends TextProps {
 }
 
 const RNText = ({
-  children,
+  title,
   weight = 'regular',
   italic = false,
   color = '#000',
   size = 'md',
   style,
-  ...rest
 }: RNTextProps) => {
   const fontKey = (italic ? `${weight}Italic` : weight) as FontKey;
   const fontFamily = fontMap[fontKey] ?? fontMap.regular;
@@ -72,10 +71,8 @@ const RNText = ({
     typeof size === 'string' ? fontSizeMap[size] ?? fontSizeMap.md : size;
 
   return (
-    <Text
-      {...rest}
-      style={[{fontFamily, color, fontSize: resolvedFontSize}, style]}>
-      {children}
+    <Text style={[{fontFamily, color, fontSize: resolvedFontSize}, style]}>
+      {title}
     </Text>
   );
 };

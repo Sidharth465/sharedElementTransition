@@ -1,6 +1,9 @@
+import CoachGif from '@assets/gif.gif';
+import React from 'react';
 import {
   Dimensions,
   GestureResponderEvent,
+  Image,
   Platform,
   Pressable,
   StyleSheet,
@@ -8,11 +11,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import Animated, {
+  useAnimatedStyle,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import Animated, {useAnimatedStyle, withTiming} from 'react-native-reanimated';
-import {Colors} from '@utils/theme/Colors';
-
 const TabBar = ({
   state,
   descriptors,
@@ -28,16 +32,17 @@ const TabBar = ({
 
   const indicatorStyle = useAnimatedStyle(() => {
     const baseLeft = screenWidth * 0.015;
-    const slidevalue = 0.41;
+    const slidevalue = 0.245;
 
     return {
       left: withTiming(baseLeft + state?.index * screenWidth * slidevalue, {
         duration: 300,
       }),
+      display:
+        state?.routes[state?.index]?.name === 'Favorite' ? 'none' : 'flex',
     };
   });
 
-  console.log('state', JSON.stringify(state, null, 2));
   return (
     <Animated.View style={[styles.tabBarContainer, {paddingBottom: bottom}]}>
       <View style={styles.tabContainer}>
@@ -65,29 +70,49 @@ const TabBar = ({
           const onLongPress = () => {
             navigation.emit({type: 'tabLongPress', target: route.key});
           };
+          const scaleCoachAnimated = useAnimatedStyle(() => ({
+            height: withTiming(isFocused ? 75 : 60, {duration: 200}),
+            width: withTiming(isFocused ? 75 : 60, {duration: 200}),
+          }));
 
           return (
-            <TouchableOpacity
-              accessibilityRole="button"
-              key={index}
-              accessibilityState={isFocused ? {selected: true} : {}}
-              accessibilityLabel={options.tabBarAccessibilityLabel}
-              testID={options.tabBarButtonTestID}
-              onPress={onPress}
-              onLongPress={onLongPress}
-              style={styles.tab}>
-              <Text
-                style={{
-                  fontSize: 18,
-                  color: isFocused ? '#33b6ff' : 'black',
-                  fontWeight: '500',
-                }}>
-                {label?.toString()?.toUpperCase()}
-              </Text>
-            </TouchableOpacity>
+            <>
+              {label == 'Favorite' ? (
+                <Pressable
+                  key={index}
+                  accessibilityState={isFocused ? {selected: true} : {}}
+                  accessibilityLabel={options.tabBarAccessibilityLabel}
+                  testID={options.tabBarButtonTestID}
+                  onPress={onPress}
+                  onLongPress={onLongPress}>
+                  <Animated.Image
+                    source={CoachGif}
+                    style={[scaleCoachAnimated]}
+                  />
+                </Pressable>
+              ) : (
+                <TouchableOpacity
+                  accessibilityRole="button"
+                  key={index}
+                  accessibilityState={isFocused ? {selected: true} : {}}
+                  accessibilityLabel={options.tabBarAccessibilityLabel}
+                  testID={options.tabBarButtonTestID}
+                  onPress={onPress}
+                  onLongPress={onLongPress}
+                  style={styles.tab}>
+                  <Text
+                    style={{
+                      fontSize: 18,
+                      color: isFocused ? '#33b6ff' : 'black',
+                      fontWeight: '500',
+                    }}>
+                    {label}
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </>
           );
         })}
-        <View style={styles.verticalLine} />
       </View>
     </Animated.View>
   );
@@ -105,7 +130,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     shadowRadius: 11,
     shadowColor: '#000',
-    bottom: 0,
+    bottom: 10,
     zIndex: 5,
     flexDirection: 'row',
     alignItems: 'center',
@@ -125,7 +150,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: '80%',
     borderRadius: 20,
-    width: '45%',
+    width: '35%',
     backgroundColor: '#fff',
     elevation: 4,
   },
@@ -145,5 +170,9 @@ const styles = StyleSheet.create({
     opacity: 0.2,
     backgroundColor: '#B4B4B4', // Using default color
     zIndex: 0,
+  },
+  image: {
+    width: 60,
+    height: 60,
   },
 });

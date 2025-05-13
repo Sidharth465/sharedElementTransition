@@ -1,4 +1,4 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Button, Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {SharedElement} from 'react-navigation-shared-element';
 import CoachGif from '@assets/gif.gif';
@@ -11,12 +11,15 @@ const HomeScreen = () => {
   };
   return (
     <View style={styles.container}>
-      <Pressable onPress={handleLogout}>
+      <Pressable onPress={undefined}>
         <SharedElement id="image1">
           <Image style={styles.image} source={CoachGif} />
         </SharedElement>
       </Pressable>
       <Text style={styles.label}>Home Screen</Text>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Button title="Logout" onPress={handleLogout} />
+      </View>
     </View>
   );
 };
