@@ -1,10 +1,11 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
+
 import LoginScreen from '@screens/LoginScreen';
 import OnboardingScreen from '@screens/OnboardingScreen';
 import {Route} from '@utils/routes';
 import React from 'react';
 
-const Stack = createNativeStackNavigator();
+const Stack = createSharedElementStackNavigator();
 
 const AuthNavigation = ({
   isAppFirstLaunch,
@@ -19,16 +20,17 @@ const AuthNavigation = ({
       initialRouteName={Route.ONBOARD}
       screenOptions={{
         headerShown: false,
-        gestureEnabled: false,
+        gestureEnabled: true,
+        cardStyleInterpolator: ({current: {progress}}) => ({
+          cardStyle: {
+            opacity: progress,
+          },
+        }),
       }}>
       <Stack.Screen
         name={Route.ONBOARD}
-        component={({navigation}: {navigation: any}) => (
-          <OnboardingScreen
-            setIsAppFirstLaunch={setIsAppFirstLaunch}
-            navigation={navigation}
-          />
-        )}
+        component={OnboardingScreen}
+        initialParams={{setIsAppFirstLaunch}}
       />
       <Stack.Screen name={Route.LOGIN} component={LoginScreen} />
     </Stack.Navigator>

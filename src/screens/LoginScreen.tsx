@@ -16,11 +16,13 @@ const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <Pressable onPress={handleContinue}>
-        <Animated.Image
-          sharedTransitionTag={`sharedTag1`}
-          style={styles.image}
-          source={CoachGif}
-        />
+        <SharedElement id="sharedTag1">
+          <Animated.Image
+            source={CoachGif}
+            style={styles.image}
+            resizeMode="cover"
+          />
+        </SharedElement>
       </Pressable>
 
       <Text style={styles.label}>Login Screen</Text>
